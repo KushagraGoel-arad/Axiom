@@ -24,7 +24,7 @@ class _signinCreateState extends State<signinCreate> {
       backgroundColor: Color.fromARGB(255, 220, 232, 241),
       body: Card(
         //elevation: 4, // Shadow depth
-        margin: EdgeInsets.only(top: 140, bottom: 140, left: 450, right: 450),
+        margin: EdgeInsets.only(top: 140, bottom: 140, left: 490, right: 490),
         child: Container(
             child: Column(
           children: [
@@ -38,7 +38,7 @@ class _signinCreateState extends State<signinCreate> {
               ),
             ),
             SizedBox(
-              height: height * 0.08,
+              height: height * 0.02,
             ),
             RichText(
               textAlign: TextAlign.center,

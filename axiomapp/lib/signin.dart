@@ -257,7 +257,7 @@ class _signinState extends State<signin> {
     return Scaffold(
       backgroundColor: Color.fromARGB(255, 221, 232, 241),
       body: Card(
-        margin: EdgeInsets.only(top: 70, bottom: 70, left: 450, right: 450),
+        margin: EdgeInsets.only(top: 70, bottom: 70, left: 490, right: 490),
         child: Container(
             child: Column(
           children: [
