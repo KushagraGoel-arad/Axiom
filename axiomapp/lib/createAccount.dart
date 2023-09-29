@@ -250,7 +250,7 @@ class _createAccountState extends State<createAccount> {
       context: context,
       builder: (BuildContext context) {
         return AlertDialog(
-          title: Text("Success"),
+          //title: Text("Success"),
           content: Text("Email sent successfully."),
           actions: <Widget>[
             TextButton(
@@ -456,9 +456,6 @@ class _createAccountState extends State<createAccount> {
       "username": nameController.text
     });
     final response = await http.post(url, headers: headers, body: body);
-    setState(() {
-      _isLoading = false; // Set loading state to false when request completes
-    });
 
     if (response.statusCode == 200) {
       print('POST request successful');
@@ -474,6 +471,10 @@ class _createAccountState extends State<createAccount> {
 
       if (jsonResponse['resultCode'] == 0) {
         SharedPreferences prefs = await SharedPreferences.getInstance();
+        setState(() {
+          _isLoading =
+              false; // Set loading state to false when request completes
+        });
 
         final aType = prefs.getString('apptype');
         print("appType: $aType");
@@ -527,9 +528,9 @@ class _createAccountState extends State<createAccount> {
       url,
       headers: headers,
     );
-    setState(() {
-      _isLoading = false; // Set loading state to false when request completes
-    });
+    // setState(() {
+    //   _isLoading = false; // Set loading state to false when request completes
+    // });
 
     if (response.statusCode == 200) {
       print('POST request successful');

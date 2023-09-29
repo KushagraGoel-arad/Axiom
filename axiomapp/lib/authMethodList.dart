@@ -261,6 +261,13 @@ class CheckboxModel {
 
 Future<Image> loadImage(String imageUrl) async {
   final Completer<Image> completer = Completer();
+  final headers = {
+    'Content-Type': 'application/json',
+    //'authToken': authToken,
+    'Access-Control-Allow-Origin': '*',
+    'Access-Control-Allow-Methods': '*',
+  }.cast<String, String>();
+
   try {
     final response = await http.get(Uri.parse(imageUrl));
     print('Response Status Code: ${response.statusCode}');
