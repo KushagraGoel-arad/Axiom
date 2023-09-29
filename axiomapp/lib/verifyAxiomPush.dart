@@ -18,7 +18,7 @@ class verifyAxiomPush extends StatefulWidget {
 
 class _verifyAxiomPushState extends State<verifyAxiomPush> {
   bool _enabled = false;
-
+  bool isLoading = false;
   String getCurrentDateTime() {
     var now = DateTime.now();
     var formatter = DateFormat('yyyy-MM-dd HH:mm:ss');

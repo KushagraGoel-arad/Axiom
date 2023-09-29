@@ -45,6 +45,8 @@ dependencies:
   flutter_typeahead: ^4.7.0
   qr_flutter: ^4.1.0
   flutter_svg: ^2.0.7
+  url_launcher: ^6.1.14
+  sn_progress_dialog: ^1.1.3
 dev_dependencies:
   flutter_test:
     sdk: flutter

@@ -282,7 +282,7 @@ class _signinState extends State<signin> {
                   child: Row(
                     children: [
                       Align(
-                        alignment: Alignment.topLeft,
+                        alignment: Alignment.centerLeft,
                         child: IconButton(
                           icon: Icon(
                             CupertinoIcons.info_circle_fill,
@@ -299,9 +299,9 @@ class _signinState extends State<signin> {
                             ),
                             Expanded(
                               child: Padding(
-                                padding: const EdgeInsets.all(16.0),
+                                padding: const EdgeInsets.all(6.0),
                                 child: RichText(
-                                  textAlign: TextAlign.center,
+                                  textAlign: TextAlign.start,
                                   text: TextSpan(
                                     style: TextStyle(
                                         fontSize: 20, color: Colors.black54),

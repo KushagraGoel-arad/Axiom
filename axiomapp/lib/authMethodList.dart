@@ -98,7 +98,7 @@ class _authMethodListState extends State<authMethodList> {
     return Scaffold(
       backgroundColor: Color.fromARGB(255, 224, 234, 241),
       body: Card(
-        margin: EdgeInsets.only(top: 70, bottom: 70, left: 450, right: 450),
+        margin: EdgeInsets.only(top: 70, bottom: 70, left: 490, right: 490),
         child: Column(
           //crossAxisAlignment: CrossAxisAlignment.start,
           children: [
@@ -120,7 +120,7 @@ class _authMethodListState extends State<authMethodList> {
               ),
             ),
             SizedBox(
-              height: 40,
+              height: height * 0.04,
             ),
             Expanded(
               child: ListView.builder(
@@ -198,7 +198,7 @@ class _authMethodListState extends State<authMethodList> {
             ),
             Center(
               child: Container(
-                width: width * 0.15,
+                width: width * 0.12,
                 height: height * 0.1,
                 child: Padding(
                   padding: const EdgeInsets.all(10.0),

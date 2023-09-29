@@ -324,7 +324,7 @@ class _authMetSetupState extends State<authMetSetup> {
     return Scaffold(
       backgroundColor: Color.fromARGB(255, 220, 231, 239),
       body: Card(
-        margin: EdgeInsets.only(top: 70, bottom: 70, left: 450, right: 450),
+        margin: EdgeInsets.only(top: 70, bottom: 70, left: 490, right: 490),
         child: Column(
           //crossAxisAlignment: CrossAxisAlignment.start,
           children: [
@@ -341,6 +341,7 @@ class _authMetSetupState extends State<authMetSetup> {
                   Text(
                     'Add another layer of security by selecting a multi-factor authentication method. We recommend you select at least two different options in case you lose one of your methods.',
                     style: TextStyle(fontSize: 16, color: Colors.grey),
+                    textAlign: TextAlign.center,
                   ),
                 ],
               ),
@@ -402,7 +403,7 @@ class _authMetSetupState extends State<authMetSetup> {
             ),
             Center(
               child: Container(
-                width: width * 0.2,
+                width: width * 0.12,
                 height: height * 0.1,
                 child: Padding(
                   padding: const EdgeInsets.all(10.0),

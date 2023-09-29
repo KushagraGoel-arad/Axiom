@@ -21,7 +21,7 @@ class verifyQRGoogleMicroAuth extends StatefulWidget {
 
 class _verifyQRGoogleMicroAuthState extends State<verifyQRGoogleMicroAuth> {
   bool _enabled = false;
-
+  bool isLoading = false;
   String getCurrentDateTime() {
     var now = DateTime.now();
     var formatter = DateFormat('yyyy-MM-dd HH:mm:ss');
@@ -152,6 +152,9 @@ class _verifyQRGoogleMicroAuthState extends State<verifyQRGoogleMicroAuth> {
   }
 
   Future<void> verifyOTP() async {
+    setState(() {
+      isLoading = true;
+    });
     // Replace with your actual API endpoint URL
     var ct = getCurrentDateTime();
 
@@ -209,7 +212,10 @@ class _verifyQRGoogleMicroAuthState extends State<verifyQRGoogleMicroAuth> {
         //     builder: (context) => otpSuccess(),
         //   ),
         // );
-         showOTPSuccess('Success', 'OTP Success');
+        setState(() {
+          isLoading = false;
+        });
+        showOTPSuccess('Success', 'OTP Success');
       } else {
         showErrorDialog('$resultMessage');
       }
@@ -309,7 +315,7 @@ class _verifyQRGoogleMicroAuthState extends State<verifyQRGoogleMicroAuth> {
 //       print('Error occurred during the request: 1');
 //     }
 //   }
-showOTPSuccess(String _title, String _message) async {
+  showOTPSuccess(String _title, String _message) async {
     return showDialog(
       context: context,
       barrierDismissible: false,
@@ -317,10 +323,10 @@ showOTPSuccess(String _title, String _message) async {
         double width = MediaQuery.of(context).size.width;
         double height = MediaQuery.of(context).size.height;
         return AlertDialog(
-          title: Text(_title),
+          // title: Text(_title),
           content: Column(children: [
             SizedBox(
-              height: height * 0.2,
+              height: height * 0.1,
             ),
             Image.asset("images/complete_valid.png"),
             Align(
@@ -337,7 +343,7 @@ showOTPSuccess(String _title, String _message) async {
               ),
             ),
             SizedBox(
-              height: height * 0.08,
+              height: height * 0.03,
             ),
             Align(
               alignment: Alignment.topCenter,
@@ -353,14 +359,14 @@ showOTPSuccess(String _title, String _message) async {
               ),
             ),
             SizedBox(
-              height: height * 0.15,
+              height: height * 0.05,
             ),
             Padding(
               padding: const EdgeInsets.all(8.0),
               child: Center(
                 child: SizedBox(
-                  width: 100,
-                  height: 40,
+                  width: width * 0.12,
+                  height: height * 0.1,
                   child: ElevatedButton(
                     onPressed: () {
                       Navigator.push(
@@ -431,149 +437,163 @@ showOTPSuccess(String _title, String _message) async {
       backgroundColor: Color.fromARGB(255, 224, 236, 245),
       body: SingleChildScrollView(
         child: Card(
-          margin: EdgeInsets.only(top: 130, bottom: 130, left: 450, right: 450),
+          margin: EdgeInsets.only(top: 130, bottom: 130, left: 490, right: 490),
           child: Center(
-            child: Padding(
-              padding: const EdgeInsets.all(16.0),
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  const Text(
-                    "Verify your OTP",
-                    style: TextStyle(
-                      fontSize: 40,
-                      fontWeight: FontWeight.w600,
+            child: Stack(children: [
+              Padding(
+                padding: const EdgeInsets.all(16.0),
+                child: Column(
+                  // mainAxisAlignment: MainAxisAlignment.center,
+                  // crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    const Text(
+                      "Verify your OTP",
+                      style: TextStyle(
+                        fontSize: 40,
+                        fontWeight: FontWeight.w600,
+                      ),
                     ),
-                  ),
-                  const SizedBox(
-                    height: 10,
-                  ),
-                  Text(
-                    "Please check Google or Microsoft Authentication Security app for OTP",
-                    style: TextStyle(
-                      fontSize: 16,
-                      color: Colors.grey[500],
+                    const SizedBox(
+                      height: 10,
                     ),
-                  ),
-                  const SizedBox(
-                    height: 50,
-                  ),
-                  Container(
-                    padding: const EdgeInsets.symmetric(horizontal: 20),
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        for (var i = 0; i < controllers.length; i++)
-                          SizedBox(
-                            width: 40,
-                            child: TextFormField(
-                              controller: controllers[i],
-                              keyboardType: TextInputType.number,
-                              autofocus: true,
-                              inputFormatters: [
-                                LengthLimitingTextInputFormatter(1),
-                                FilteringTextInputFormatter.digitsOnly
-                              ],
-                              textAlign: TextAlign.center,
-                              maxLength: 1,
-                              onSaved: (i) {},
-                              onChanged: (value) {
-                                if (value.length == 1) {
-                                  FocusScope.of(context).nextFocus();
-                                  setState(() {
-                                    _updateEnteredValue(); // Update the entered value variable
-                                  });
-                                } else if (value.isEmpty && i > 0) {
-                                  FocusScope.of(context).previousFocus();
-                                }
-                              },
-                              style: const TextStyle(fontSize: 18),
-                              decoration: const InputDecoration(
-                                border: UnderlineInputBorder(
-                                  borderSide: BorderSide(
-                                    color: Color.fromARGB(255, 22, 103, 170),
+                    Text(
+                      "Please check Google or Microsoft Authentication Security app for OTP",
+                      style: TextStyle(
+                        fontSize: 16,
+                        color: Colors.grey[500],
+                      ),
+                    ),
+                    const SizedBox(
+                      height: 50,
+                    ),
+                    Container(
+                      padding: const EdgeInsets.symmetric(horizontal: 20),
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          for (var i = 0; i < controllers.length; i++)
+                            SizedBox(
+                              width: 40,
+                              child: TextFormField(
+                                controller: controllers[i],
+                                keyboardType: TextInputType.number,
+                                autofocus: true,
+                                inputFormatters: [
+                                  LengthLimitingTextInputFormatter(1),
+                                  FilteringTextInputFormatter.digitsOnly
+                                ],
+                                textAlign: TextAlign.center,
+                                maxLength: 1,
+                                onSaved: (i) {},
+                                onChanged: (value) {
+                                  if (value.length == 1) {
+                                    FocusScope.of(context).nextFocus();
+                                    setState(() {
+                                      _updateEnteredValue(); // Update the entered value variable
+                                    });
+                                  } else if (value.isEmpty && i > 0) {
+                                    FocusScope.of(context).previousFocus();
+                                  }
+                                },
+                                style: const TextStyle(fontSize: 18),
+                                decoration: const InputDecoration(
+                                  border: OutlineInputBorder(
+                                    borderSide: BorderSide(
+                                      color: Color.fromARGB(255, 22, 103, 170),
+                                    ),
                                   ),
-                                ),
-                                counterText: '',
-                                focusedBorder: UnderlineInputBorder(
-                                  borderSide: BorderSide(
-                                    color: Color.fromARGB(255, 22, 103, 170),
+                                  counterText: '',
+                                  focusedBorder: OutlineInputBorder(
+                                    borderSide: BorderSide(
+                                      color: Color.fromARGB(255, 22, 103, 170),
+                                    ),
                                   ),
                                 ),
                               ),
                             ),
-                          ),
-                      ],
+                        ],
+                      ),
                     ),
-                  ),
-                  const SizedBox(
-                    height: 25,
-                  ),
-                  Padding(
-                    padding: const EdgeInsets.all(8.0),
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        Text(
-                          "Not received yet?",
-                          style: TextStyle(
-                            fontSize: 16,
-                            color: Colors.grey[500],
-                          ),
-                        ),
-                        InkWell(
-                          // onTap: () => sendRegCode(),
-                          child: const Text(
-                            " Resend",
-                            style: TextStyle(
-                                fontSize: 16,
-                                color: Color.fromARGB(255, 22, 103, 170),
-                                fontWeight: FontWeight.w600),
-                          ),
-                        ),
-                      ],
+                    const SizedBox(
+                      height: 25,
                     ),
-                  ),
-                  SizedBox(
-                    height: height * 0.1,
-                  ),
-                  Center(
-                    child: Container(
-                      width: width * 0.1,
-                      height: height * 0.09,
-                      child: Padding(
-                        padding: const EdgeInsets.all(14.0),
-                        child: ElevatedButton(
-                          style: ElevatedButton.styleFrom(
-                            padding: const EdgeInsets.symmetric(
-                                horizontal: 20, vertical: 20),
-                            shape: const RoundedRectangleBorder(
-                                borderRadius:
-                                    BorderRadius.all(Radius.circular(5))),
-                            backgroundColor: Color.fromARGB(255, 22, 103, 170),
+                    // Padding(
+                    //   padding: const EdgeInsets.all(8.0),
+                    //   child: Row(
+                    //     mainAxisAlignment: MainAxisAlignment.center,
+                    //     children: [
+                    //       Text(
+                    //         "Not received yet?",
+                    //         style: TextStyle(
+                    //           fontSize: 16,
+                    //           color: Colors.grey[500],
+                    //         ),
+                    //       ),
+                    //       InkWell(
+                    //         // onTap: () => sendRegCode(),
+                    //         child: const Text(
+                    //           " Resend",
+                    //           style: TextStyle(
+                    //               fontSize: 16,
+                    //               color: Color.fromARGB(255, 22, 103, 170),
+                    //               fontWeight: FontWeight.w600),
+                    //         ),
+                    //       ),
+                    //     ],
+                    //   ),
+                    // ),
+                    SizedBox(
+                      height: height * 0.1,
+                    ),
+                    Center(
+                      child: Container(
+                        width: width * 0.1,
+                        height: height * 0.09,
+                        child: Padding(
+                          padding: const EdgeInsets.all(14.0),
+                          child: ElevatedButton(
+                            style: ElevatedButton.styleFrom(
+                              padding: const EdgeInsets.symmetric(
+                                  horizontal: 20, vertical: 20),
+                              shape: const RoundedRectangleBorder(
+                                  borderRadius:
+                                      BorderRadius.all(Radius.circular(5))),
+                              backgroundColor:
+                                  Color.fromARGB(255, 22, 103, 170),
+                            ),
+                            onPressed: () {
+                              verifyOTP();
+                            },
+                            child: const Center(
+                                child: Text(
+                              "VERIFY",
+                              style:
+                                  TextStyle(color: Colors.white, fontSize: 16),
+                            )),
                           ),
-                          onPressed: () {
-                            verifyOTP();
-                          },
-                          child: const Center(
-                              child: Text(
-                            "VERIFY",
-                            style: TextStyle(color: Colors.white, fontSize: 16),
-                          )),
                         ),
                       ),
                     ),
-                  ),
-                  const SizedBox(
-                    height: 15,
-                  ),
-                  const SizedBox(
-                    height: 15,
-                  ),
-                ],
+                    const SizedBox(
+                      height: 15,
+                    ),
+                    const SizedBox(
+                      height: 15,
+                    ),
+                  ],
+                ),
               ),
-            ),
+              if (isLoading) // Show CircularProgressIndicator as overlay when loading
+                Positioned.fill(
+                  child: Container(
+                    color: Color.fromARGB(137, 79, 79, 79)
+                        .withOpacity(0.5), // Semi-transparent background
+                    child: Center(
+                      child: CircularProgressIndicator(),
+                    ),
+                  ),
+                ),
+            ]),
           ),
         ),
       ),

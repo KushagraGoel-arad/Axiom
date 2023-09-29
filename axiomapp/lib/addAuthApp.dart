@@ -11,6 +11,8 @@ import 'package:qr_flutter/qr_flutter.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'dart:typed_data';
 
+import 'package:url_launcher/url_launcher.dart';
+
 class addAuthApp extends StatefulWidget {
   final String? selectedAppId;
   const addAuthApp({super.key, this.selectedAppId});
@@ -292,7 +294,7 @@ class _addAuthAppState extends State<addAuthApp> {
       backgroundColor: Color.fromARGB(255, 224, 236, 245),
       body: SingleChildScrollView(
         child: Card(
-          margin: EdgeInsets.only(top: 20, bottom: 20, left: 450, right: 450),
+          margin: EdgeInsets.only(top: 20, bottom: 20, left: 490, right: 490),
           child: Container(
               child: Column(
             children: [
@@ -445,13 +447,10 @@ class _addAuthAppState extends State<addAuthApp> {
                         Padding(
                           padding: const EdgeInsets.all(16.0),
                           child: Center(
-                              child: Base64ImageWidget(base64ImageData)
-                              // child: base64ImageData.isNotEmpty
-                              //     ? Image.memory(
-                              //         base64ImageData as Uint8List,
-                              //         fit: BoxFit.contain,
-                              //       )
-                              //     : CircularProgressIndicator(),
+                              //child: Base64ImageWidget(base64ImageData)
+                              child: base64ImageData.isNotEmpty
+                                  ? Base64ImageWidget(base64ImageData)
+                                  : CircularProgressIndicator(),
                               // child: FutureBuilder<String?>(
                               //   future: Future.value(
                               //       base64ImageData), // Use Future.value to create a future from the variable
@@ -612,58 +611,51 @@ class _addAuthAppState extends State<addAuthApp> {
                   ),
                 ],
               ),
-              // Align(
-              //   alignment: Alignment.topLeft,
-              //   child: Padding(
-              //     padding: const EdgeInsets.only(left: 16, top: 16),
-              //     child: Container(
-              //       padding: EdgeInsets.all(8.0),
-              //       decoration: BoxDecoration(
-              //         border: Border.all(
-              //           color: Color.fromARGB(255, 165, 205, 237),
-              //           width: 2.0,
-              //         ),
-              //         borderRadius: BorderRadius.circular(8.0),
-              //       ),
-              //       child: Row(
-              //         mainAxisAlignment: MainAxisAlignment.start,
-              //         mainAxisSize: MainAxisSize.min,
-              //         children: <Widget>[
-              //           Checkbox(
-              //             value: _isChecked,
-              //             onChanged: (bool? value) {
-              //               setState(() {
-              //                 _isChecked = !_isChecked;
-              //               });
-              //             },
-              //           ),
-              //           Padding(
-              //             padding: const EdgeInsets.all(8),
-              //             child: RichText(
-              //               textAlign: TextAlign.center,
-              //               text: TextSpan(
-              //                 style:
-              //                     TextStyle(fontSize: 20, color: Colors.black54),
-              //                 children: <TextSpan>[
-              //                   TextSpan(
-              //                     text: "Remember this browser",
-              //                     style: TextStyle(
-              //                       fontSize: 18,
-              //                     ),
-              //                   ),
-              //                 ],
-              //               ),
-              //             ),
-              //           ),
-              //           // Text(
-              //           //   'I read and accept the Login.gov',
-              //           //   style: TextStyle(color: Color.fromARGB(255, 91, 90, 90)),
-              //           // ),
-              //         ],
-              //       ),
-              //     ),
-              //   ),
-              // ),
+              Align(
+                alignment: Alignment.topLeft,
+                child: Padding(
+                  padding: const EdgeInsets.only(left: 16, top: 16),
+                  child: RichText(
+                    textAlign: TextAlign.start,
+                    text: TextSpan(
+                      style: TextStyle(
+                          fontSize: 20, color: Colors.black54),
+                      children: <TextSpan>[
+                        
+                        TextSpan(
+                          text:
+                              "Google Authentication",
+                          style: TextStyle(
+                            fontSize: 18,
+                            color: Colors.blue,
+                            decoration: TextDecoration.underline,
+                          ),
+                          recognizer: TapGestureRecognizer()
+                            ..onTap = () async {
+                               const url = 'https://play.google.com/store/apps/details?id=com.google.android.apps.authenticator2&pli=1';
+
+                      // Check if the URL can be launched
+                      final canLaunchUrl = await canLaunch(url);
+
+                      if (canLaunchUrl) {
+                        // Launch the URL
+                        await launchUrl(url as Uri);
+                      } else {
+                        // Handle the case where the URL cannot be launched
+                        print('Cannot launch $url');
+                      }
+                            },
+                        ),
+                      ],
+                    ),
+                  ),
+                        // Text(
+                        //   'I read and accept the Login.gov',
+                        //   style: TextStyle(color: Color.fromARGB(255, 91, 90, 90)),
+                        // ),
+                   
+                ),
+              ),
               SizedBox(
                 height: height * 0.05,
               ),

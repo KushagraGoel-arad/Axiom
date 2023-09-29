@@ -20,6 +20,8 @@ class EamilMeSoftOTPPush extends StatefulWidget {
 }
 
 class _EamilMeSoftOTPPushState extends State<EamilMeSoftOTPPush> {
+  bool isLoading = false;
+
   String getCurrentDateTime() {
     var now = DateTime.now();
     var formatter = DateFormat('yyyy-MM-dd HH:mm:ss');
@@ -94,6 +96,9 @@ class _EamilMeSoftOTPPushState extends State<EamilMeSoftOTPPush> {
 
   //Email OTP API
   Future<void> sendOTP() async {
+    setState(() {
+      isLoading = true;
+    });
     // Replace with your actual API endpoint URL
     var ct = getCurrentDateTime();
 
@@ -149,6 +154,9 @@ class _EamilMeSoftOTPPushState extends State<EamilMeSoftOTPPush> {
             checkboxes.firstWhere((item) => item.isChecked);
 
         if (selectedItem != null) {
+          setState(() {
+            isLoading = false;
+          });
           Navigator.push(
             context,
             MaterialPageRoute(builder: (context) => selectedItem.route),
@@ -168,6 +176,9 @@ class _EamilMeSoftOTPPushState extends State<EamilMeSoftOTPPush> {
 
 //Axiom Push
   Future<void> AxiomPush() async {
+    setState(() {
+      isLoading = true;
+    });
     // Replace with your actual API endpoint URL
     var ct = getCurrentDateTime();
 
@@ -235,6 +246,9 @@ class _EamilMeSoftOTPPushState extends State<EamilMeSoftOTPPush> {
             checkboxes.firstWhere((item) => item.isChecked);
 
         if (selectedItem != null) {
+          setState(() {
+            isLoading = false;
+          });
           Navigator.push(
             context,
             MaterialPageRoute(builder: (context) => selectedItem.route),
@@ -253,12 +267,19 @@ class _EamilMeSoftOTPPushState extends State<EamilMeSoftOTPPush> {
   }
 
   Future<void> sendSoftOTP() async {
+    setState(() {
+      isLoading = true;
+    });
     CheckboxModel selectedItem =
         checkboxes.firstWhere((item) => item.isChecked);
+
     await Navigator.push(
       context,
       MaterialPageRoute(builder: (context) => selectedItem.route),
     );
+    setState(() {
+      isLoading = false;
+    });
   }
 
   void handleButtonPress() async {
@@ -292,139 +313,151 @@ class _EamilMeSoftOTPPushState extends State<EamilMeSoftOTPPush> {
     return Scaffold(
       backgroundColor: Color.fromARGB(255, 224, 236, 245),
       body: Card(
-        margin: EdgeInsets.only(top: 70, bottom: 70, left: 450, right: 450),
-        child: Column(
-          //crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Padding(
-              padding: EdgeInsets.all(16.0),
-              child: Column(
-                //crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Text(
-                    'How would you like to sign in',
-                    style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
-                  ),
-                  // SizedBox(height: 8),
-                  // Text(
-                  //   'Add another layer of security by selecting a multi-factor authentication method. We recommend you select at least two different options in case you lose one of your methods.',
-                  //   style: TextStyle(fontSize: 16, color: Colors.grey),
-                  // ),
-                ],
+        margin: EdgeInsets.only(top: 70, bottom: 70, left: 490, right: 490),
+        child: Stack(children: [
+          Column(
+            //crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Padding(
+                padding: EdgeInsets.all(16.0),
+                child: Column(
+                  //crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text(
+                      'How would you like to sign in',
+                      style:
+                          TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
+                    ),
+                    // SizedBox(height: 8),
+                    // Text(
+                    //   'Add another layer of security by selecting a multi-factor authentication method. We recommend you select at least two different options in case you lose one of your methods.',
+                    //   style: TextStyle(fontSize: 16, color: Colors.grey),
+                    // ),
+                  ],
+                ),
               ),
-            ),
-            Expanded(
-              child: ListView.builder(
-                itemCount: checkboxes.length,
-                itemBuilder: (context, index) {
-                  final item = checkboxes[index];
+              Expanded(
+                child: ListView.builder(
+                  itemCount: checkboxes.length,
+                  itemBuilder: (context, index) {
+                    final item = checkboxes[index];
 
-                  return Padding(
-                    padding: const EdgeInsets.all(20.0),
-                    child: Container(
-                      padding: EdgeInsets.all(8.0),
-                      decoration: BoxDecoration(
-                        border: Border.all(
-                          color: Color.fromARGB(255, 165, 205, 237),
-                          width: 2.0,
+                    return Padding(
+                      padding: const EdgeInsets.all(20.0),
+                      child: Container(
+                        padding: EdgeInsets.all(8.0),
+                        decoration: BoxDecoration(
+                          border: Border.all(
+                            color: Color.fromARGB(255, 165, 205, 237),
+                            width: 2.0,
+                          ),
+                          borderRadius: BorderRadius.circular(8.0),
                         ),
-                        borderRadius: BorderRadius.circular(8.0),
-                      ),
-                      child: ListTile(
-                        leading: Row(
-                          mainAxisSize: MainAxisSize.min,
-                          children: [
-                            Checkbox(
-                              value: item.isChecked,
-                              onChanged: (value) {
-                                setState(() {
-                                  checkboxes.forEach((model) {
-                                    model.isChecked = false;
+                        child: ListTile(
+                          leading: Row(
+                            mainAxisSize: MainAxisSize.min,
+                            children: [
+                              Checkbox(
+                                value: item.isChecked,
+                                onChanged: (value) {
+                                  setState(() {
+                                    checkboxes.forEach((model) {
+                                      model.isChecked = false;
+                                    });
+                                    // Update the selected item
+                                    item.isChecked = value!;
                                   });
-
-                                  // Update the selected item
-                                  item.isChecked = value!;
-                                });
-                              },
-                            ),
-                            SizedBox(width: 8),
-                            Image.network(
-                              item.image,
-                              width: 40,
-                              height: 40,
-                            )
-                            // FutureBuilder(
-                            //   future: loadImage(item.image),
-                            //   builder: (context, snapshot) {
-                            //     if (snapshot.connectionState ==
-                            //         ConnectionState.done) {
-                            //       if (snapshot.hasError) {
-                            //         return Text('Image Error');
-                            //       }
-                            //       return Image.network(item.image);
-                            //     } else {
-                            //       return CircularProgressIndicator();
-                            //     }
-                            //   },
-                            // ),
-                          ],
-                        ),
-                        title: Text(
-                          item.title,
-                          style: TextStyle(
-                              color: Color.fromARGB(255, 22, 103, 170),
-                              fontWeight: FontWeight.bold),
+                                },
+                              ),
+                              SizedBox(width: 8),
+                              Image.network(
+                                item.image,
+                                width: 40,
+                                height: 40,
+                              )
+                              // FutureBuilder(
+                              //   future: loadImage(item.image),
+                              //   builder: (context, snapshot) {
+                              //     if (snapshot.connectionState ==
+                              //         ConnectionState.done) {
+                              //       if (snapshot.hasError) {
+                              //         return Text('Image Error');
+                              //       }
+                              //       return Image.network(item.image);
+                              //     } else {
+                              //       return CircularProgressIndicator();
+                              //     }
+                              //   },
+                              // ),
+                            ],
+                          ),
+                          title: Text(
+                            item.title,
+                            style: TextStyle(
+                                color: Color.fromARGB(255, 22, 103, 170),
+                                fontWeight: FontWeight.bold),
+                          ),
                         ),
                       ),
-                    ),
-                  );
-                },
+                    );
+                  },
+                ),
               ),
-            ),
-            Center(
-              child: Container(
-                width: width * 0.3,
-                height: height * 0.1,
-                child: Padding(
-                  padding: const EdgeInsets.all(14.0),
-                  child: ElevatedButton(
-                    style: ElevatedButton.styleFrom(
-                      padding: const EdgeInsets.symmetric(
-                          horizontal: 20, vertical: 20),
-                      shape: const RoundedRectangleBorder(
-                          borderRadius: BorderRadius.all(Radius.circular(5))),
-                      backgroundColor: Color.fromARGB(255, 22, 103, 170),
-                    ),
-                    onPressed: () {
-                      handleButtonPress();
-                      // CheckboxModel selectedItem =
-                      //     checkboxes.firstWhere((item) => item.isChecked);
+              Center(
+                child: Container(
+                  width: width * 0.12,
+                  height: height * 0.1,
+                  child: Padding(
+                    padding: const EdgeInsets.all(14.0),
+                    child: ElevatedButton(
+                      style: ElevatedButton.styleFrom(
+                        padding: const EdgeInsets.symmetric(
+                            horizontal: 20, vertical: 20),
+                        shape: const RoundedRectangleBorder(
+                            borderRadius: BorderRadius.all(Radius.circular(5))),
+                        backgroundColor: Color.fromARGB(255, 22, 103, 170),
+                      ),
+                      onPressed: () {
+                        handleButtonPress();
+                        // CheckboxModel selectedItem =
+                        //     checkboxes.firstWhere((item) => item.isChecked);
 
-                      // if (selectedItem != null) {
-                      //   Navigator.push(
-                      //     context,
-                      //     MaterialPageRoute(
-                      //         builder: (context) => selectedItem.route),
-                      //   );
-                      // } else {
-                      //   // Handle case when no checkbox is selected
-                      //   print('No checkbox selected');
-                      // }
-                    },
-                    child: const Center(
-                        child: Text(
-                      "Continue",
-                      style: TextStyle(
-                          color: Colors.white,
-                          fontSize: 18,
-                          fontWeight: FontWeight.bold),
-                    )),
+                        // if (selectedItem != null) {
+                        //   Navigator.push(
+                        //     context,
+                        //     MaterialPageRoute(
+                        //         builder: (context) => selectedItem.route),
+                        //   );
+                        // } else {
+                        //   // Handle case when no checkbox is selected
+                        //   print('No checkbox selected');
+                        // }
+                      },
+                      child: const Center(
+                          child: Text(
+                        "Continue",
+                        style: TextStyle(
+                            color: Colors.white,
+                            fontSize: 18,
+                            fontWeight: FontWeight.bold),
+                      )),
+                    ),
                   ),
                 ),
               ),
+            ],
+          ),
+          if (isLoading) // Show CircularProgressIndicator as overlay when loading
+            Positioned.fill(
+              child: Container(
+                color: Color.fromARGB(137, 79, 79, 79)
+                    .withOpacity(0.5), // Semi-transparent background
+                child: Center(
+                  child: CircularProgressIndicator(),
+                ),
+              ),
             ),
-          ],
-        ),
+        ]),
       ),
     );
   }

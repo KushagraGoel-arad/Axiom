@@ -271,18 +271,18 @@ class _createAccountState extends State<createAccount> {
     );
   }
 
-  void showErrorDialog() {
+  void showErrorDialog(String errorMessage) {
     showDialog(
       context: context,
       builder: (BuildContext context) {
         return AlertDialog(
           title: Text("Error"),
-          content: Text("Failed to send email."),
+          content: Text(errorMessage),
           actions: <Widget>[
             TextButton(
               child: Text("OK"),
               onPressed: () {
-                Navigator.of(context).pop();
+                Navigator.of(context).pop(); // Close the error dialog
               },
             ),
           ],
@@ -466,10 +466,11 @@ class _createAccountState extends State<createAccount> {
       Map<String, dynamic> jsonResponse = jsonDecode(response.body);
       String? resultMessage = jsonResponse['resultMessage'];
 
-      // if (resultMessage != null) {
-      //   print('Result Message: $resultMessage');
-      // } else {
-      //   print('Result Message is null.');
+      if (resultMessage != null) {
+        print('Result Message: $resultMessage');
+      } else {
+        print('Result Message is null.');
+      }
 
       if (jsonResponse['resultCode'] == 0) {
         SharedPreferences prefs = await SharedPreferences.getInstance();
@@ -490,6 +491,8 @@ class _createAccountState extends State<createAccount> {
         //     builder: (context) => userCreatedSuccess(),
         //   ),
         // );
+      } else {
+        showErrorDialog('$resultMessage');
       }
     } else {
       print('POST request failed');
@@ -499,9 +502,9 @@ class _createAccountState extends State<createAccount> {
   }
 
   Future<void> get() async {
-    setState(() {
-      _isLoading = true; // Set loading state to true
-    });
+    // setState(() {
+    //   _isLoading = true; // Set loading state to true
+    // });
     SharedPreferences prefs = await SharedPreferences.getInstance();
     final appID = _selectedAppId;
     final authToken = prefs.getString('jwtToken');
@@ -533,6 +536,11 @@ class _createAccountState extends State<createAccount> {
       print(response.body);
       Map<String, dynamic> jsonResponse = jsonDecode(response.body);
       String? resultMessage = jsonResponse['resultMessage'];
+      if (resultMessage != null) {
+        print('Result Message: $resultMessage');
+      } else {
+        print('Result Message is null.');
+      }
 
       if (jsonResponse['resultCode'] == 0) {
         //userCreatedSuccess(appTYPE: appTYpe);
@@ -548,6 +556,8 @@ class _createAccountState extends State<createAccount> {
         //     builder: (context) => userCreatedSuccess(),
         //   ),
         // );
+      } else {
+        showErrorDialog('$resultMessage');
       }
     } else {
       print('POST request failed');
@@ -799,7 +809,7 @@ class _createAccountState extends State<createAccount> {
       backgroundColor: Color.fromARGB(255, 224, 236, 245),
       body: SingleChildScrollView(
         child: Card(
-          margin: EdgeInsets.only(top: 50, bottom: 50, left: 450, right: 450),
+          margin: EdgeInsets.only(top: 50, bottom: 50, left: 490, right: 490),
           child: Center(
             child: Stack(children: [
               Container(
@@ -809,7 +819,7 @@ class _createAccountState extends State<createAccount> {
                     height: height * 0.01,
                   ),
                   Align(
-                    alignment: Alignment.topLeft,
+                    alignment: Alignment.topCenter,
                     child: Padding(
                       padding: const EdgeInsets.all(32.0),
                       child: Text(
@@ -983,11 +993,11 @@ class _createAccountState extends State<createAccount> {
                     ),
                   ),
                   Padding(
-                    padding: const EdgeInsets.only(left: 40.0, top: 30),
+                    padding: const EdgeInsets.only(left: 50.0, top: 30),
                     child: Align(
                       alignment: Alignment.topLeft,
                       child: Padding(
-                        padding: const EdgeInsets.only(left: 16.0),
+                        padding: const EdgeInsets.only(left: 8.0),
                         child: Text(
                           "Select a Application",
                           style: TextStyle(
@@ -999,18 +1009,18 @@ class _createAccountState extends State<createAccount> {
                     ),
                   ),
                   Padding(
-                    padding: const EdgeInsets.only(left: 60.0, top: 10),
+                    padding:
+                        const EdgeInsets.only(left: 60.0, top: 10, right: 100),
                     child: buildDropdownButton(),
                   ),
-
                   SizedBox(
                     height: height * 0.04,
                   ),
                   Container(
                     height: height * 0.1,
-                    width: width * 0.3,
+                    width: width * 0.2,
                     child: Padding(
-                      padding: const EdgeInsets.all(14.0),
+                      padding: const EdgeInsets.all(12.0),
                       child: ElevatedButton(
                         style: ElevatedButton.styleFrom(
                           padding: const EdgeInsets.symmetric(

@@ -300,7 +300,7 @@ class _absoluteAuthAppState extends State<absoluteAuthApp> {
     return Scaffold(
       backgroundColor: Color.fromARGB(255, 224, 236, 245),
       body: Card(
-        margin: EdgeInsets.only(top: 20, bottom: 20, left: 450, right: 450),
+        margin: EdgeInsets.only(top: 20, bottom: 20, left: 490, right: 490),
         child: Container(
             child: Column(
           children: [
@@ -452,44 +452,42 @@ class _absoluteAuthAppState extends State<absoluteAuthApp> {
                       ),
                       Padding(
                         padding: const EdgeInsets.all(16.0),
-                        child: Center(child: Base64ImageWidget(base64ImageData)
-                            // child: base64ImageData.isNotEmpty
-                            //     ? Image.memory(
-                            //         base64ImageData as Uint8List,
-                            //         fit: BoxFit.contain,
-                            //       )
-                            //     : CircularProgressIndicator(),
-                            // child: FutureBuilder<String?>(
-                            //   future: Future.value(
-                            //       base64ImageData), // Use Future.value to create a future from the variable
-                            //   builder: (context, snapshot) {
-                            //     if (snapshot.connectionState ==
-                            //         ConnectionState.waiting) {
-                            //       return CircularProgressIndicator();
-                            //     } else if (snapshot.hasError) {
-                            //       return Text('Error: ${snapshot.error}');
-                            //     } else if (snapshot.hasData &&
-                            //         snapshot.data != null) {
-                            //       try {
-                            //         // Convert the base64 string to bytes
-                            //         final Uint8List bytes =
-                            //             base64.decode(snapshot.data!);
+                        child: Center(
+                          //child: Base64ImageWidget(base64ImageData)
+                          child: base64ImageData.isNotEmpty
+                              ? Base64ImageWidget(base64ImageData)
+                              : CircularProgressIndicator(),
+                          // child: FutureBuilder<String?>(
+                          //   future: Future.value(
+                          //       base64ImageData), // Use Future.value to create a future from the variable
+                          //   builder: (context, snapshot) {
+                          //     if (snapshot.connectionState ==
+                          //         ConnectionState.waiting) {
+                          //       return CircularProgressIndicator();
+                          //     } else if (snapshot.hasError) {
+                          //       return Text('Error: ${snapshot.error}');
+                          //     } else if (snapshot.hasData &&
+                          //         snapshot.data != null) {
+                          //       try {
+                          //         // Convert the base64 string to bytes
+                          //         final Uint8List bytes =
+                          //             base64.decode(snapshot.data!);
 
-                            //         // Display the QR code as an image using Image.memory
-                            //         return Image.memory(
-                            //           bytes,
-                            //           fit: BoxFit.contain,
-                            //         );
-                            //       } catch (e) {
-                            //         print('Error: $e');
-                            //         return Text('Error decoding image data.');
-                            //       }
-                            //     } else {
-                            //       return Text('Image data not available.');
-                            //     }
-                            //   },
-                            // ),
-                            ),
+                          //         // Display the QR code as an image using Image.memory
+                          //         return Image.memory(
+                          //           bytes,
+                          //           fit: BoxFit.contain,
+                          //         );
+                          //       } catch (e) {
+                          //         print('Error: $e');
+                          //         return Text('Error decoding image data.');
+                          //       }
+                          //     } else {
+                          //       return Text('Image data not available.');
+                          //     }
+                          //   },
+                          // ),
+                        ),
                       ),
                       // Padding(
                       //   padding: const EdgeInsets.all(16.0),
