@@ -335,7 +335,11 @@ class _authMetSetupState extends State<authMetSetup> {
                 children: [
                   Text(
                     'Authentication Method Setup',
-                    style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
+                    style: TextStyle(
+                      fontSize: 30,
+                      fontWeight: FontWeight.bold,
+                      color: Color.fromARGB(221, 39, 39, 39),
+                    ),
                   ),
                   SizedBox(height: 8),
                   Text(

@@ -109,7 +109,12 @@ class _authMethodListState extends State<authMethodList> {
                 children: [
                   Text(
                     'Select Application (Click on any one application)',
-                    style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
+                    textAlign: TextAlign.center,
+                    style: TextStyle(
+                      fontSize: 30,
+                      fontWeight: FontWeight.bold,
+                      color: Color.fromARGB(221, 39, 39, 39),
+                    ),
                   ),
                   // SizedBox(height: 8),
                   // Text(

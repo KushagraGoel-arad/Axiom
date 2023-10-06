@@ -807,309 +807,305 @@ class _createAccountState extends State<createAccount> {
     String _selectedLanguage = '';
 
     return Scaffold(
-      backgroundColor: Color.fromARGB(255, 224, 236, 245),
+      //backgroundColor: Color.fromARGB(255, 224, 236, 245),
       body: SingleChildScrollView(
-        child: Card(
-          margin: EdgeInsets.only(top: 50, bottom: 50, left: 490, right: 490),
-          child: Center(
-            child: Stack(children: [
-              Container(
-                  child: Column(
-                children: [
-                  SizedBox(
-                    height: height * 0.01,
-                  ),
-                  Align(
-                    alignment: Alignment.topCenter,
-                    child: Padding(
-                      padding: const EdgeInsets.all(32.0),
-                      child: Text(
-                        "Create an account for new users",
-                        style: TextStyle(
-                            fontWeight: FontWeight.bold, fontSize: 30),
-                      ),
-                    ),
-                  ),
-                  SizedBox(
-                    height: height * 0.01,
-                  ),
-                  // Padding(
-                  //   padding: const EdgeInsets.only(left: 16.0),
-                  //   child: Align(
-                  //       alignment: Alignment.topLeft,
-                  //       child: Text(
-                  //           "Next, complete the following fields. Unless marked as optional, all fields are required. ")),
-                  // ),
-                  Padding(
-                    padding: const EdgeInsets.only(left: 50.0),
-                    child: Column(
-                      children: [
-                        Padding(
-                          padding: const EdgeInsets.only(left: 8),
-                          child: Align(
-                            alignment: Alignment.topLeft,
-                            child: Text("Name*",
-                                style: TextStyle(
-                                    fontSize: 16,
-                                    color: Colors.black87,
-                                    fontWeight: FontWeight.bold)),
-                          ),
-                        ),
-                        Padding(
-                          padding: const EdgeInsets.only(
-                              left: 8.0, top: 8, right: 100),
-                          child: TextFormField(
-                            controller: nameController,
-                            decoration: InputDecoration(
-                              fillColor: Color.fromARGB(255, 182, 224, 242),
-                              //labelText: 'Email Address',
-                              //labelStyle: TextStyle(color: Colors.grey),
-                              enabledBorder: OutlineInputBorder(
-                                borderSide: BorderSide(
-                                    color: Color.fromARGB(255, 22, 103, 170)),
-                              ),
-                              focusedBorder: OutlineInputBorder(
-                                borderSide: BorderSide(
-                                    color: Color.fromARGB(255, 22, 103, 170)),
-                              ),
-                            ),
-                          ),
-                        ),
-                      ],
-                    ),
-                  ),
-                  Padding(
-                    padding: const EdgeInsets.only(left: 50.0, top: 10),
-                    child: Column(
-                      children: [
-                        Padding(
-                          padding: const EdgeInsets.only(left: 8),
-                          child: Align(
-                            alignment: Alignment.topLeft,
-                            child: Text("Email*",
-                                style: TextStyle(
-                                    fontSize: 16,
-                                    color: Colors.black87,
-                                    fontWeight: FontWeight.bold)),
-                          ),
-                        ),
-                        Padding(
-                          padding: const EdgeInsets.only(
-                              left: 8.0, top: 8, right: 100),
-                          child: TextFormField(
-                            controller: emailController,
-                            decoration: InputDecoration(
-                              fillColor: Color.fromARGB(255, 182, 224, 242),
-                              //labelText: 'Email Address',
-                              //labelStyle: TextStyle(color: Colors.grey),
-                              enabledBorder: OutlineInputBorder(
-                                borderSide: BorderSide(
-                                    color: Color.fromARGB(255, 22, 103, 170)),
-                              ),
-                              focusedBorder: OutlineInputBorder(
-                                borderSide: BorderSide(
-                                    color: Color.fromARGB(255, 22, 103, 170)),
-                              ),
-                            ),
-                          ),
-                        ),
-                      ],
-                    ),
-                  ),
-                  Padding(
-                    padding: const EdgeInsets.only(left: 50.0, top: 16),
-                    child: Column(
-                      children: [
-                        Padding(
-                          padding: const EdgeInsets.only(left: 8),
-                          child: Align(
-                            alignment: Alignment.topLeft,
-                            child: Text("Phone*",
-                                style: TextStyle(
-                                    fontSize: 16,
-                                    color: Colors.black87,
-                                    fontWeight: FontWeight.bold)),
-                          ),
-                        ),
-                        Padding(
-                          padding: const EdgeInsets.only(
-                              left: 8.0, top: 8, right: 100),
-                          child: TextFormField(
-                            controller: phoneController,
-                            decoration: InputDecoration(
-                              fillColor: Color.fromARGB(255, 182, 224, 242),
-                              //labelText: 'Email Address',
-                              //labelStyle: TextStyle(color: Colors.grey),
-                              enabledBorder: OutlineInputBorder(
-                                borderSide: BorderSide(
-                                    color: Color.fromARGB(255, 22, 103, 170)),
-                              ),
-                              focusedBorder: OutlineInputBorder(
-                                borderSide: BorderSide(
-                                    color: Color.fromARGB(255, 22, 103, 170)),
-                              ),
-                            ),
-                          ),
-                        ),
-                      ],
-                    ),
-                  ),
-                  Padding(
-                    padding: const EdgeInsets.only(left: 50.0, top: 16),
-                    child: Column(
-                      children: [
-                        Padding(
-                          padding: const EdgeInsets.only(left: 8),
-                          child: Align(
-                            alignment: Alignment.topLeft,
-                            child: Text("UserId*",
-                                style: TextStyle(
-                                    fontSize: 16,
-                                    color: Colors.black87,
-                                    fontWeight: FontWeight.bold)),
-                          ),
-                        ),
-                        Padding(
-                          padding: const EdgeInsets.only(
-                              left: 8.0, top: 8, right: 100),
-                          child: TextFormField(
-                            controller: userIdController,
-                            decoration: InputDecoration(
-                              fillColor: Color.fromARGB(255, 182, 224, 242),
-                              //labelText: 'Email Address',
-                              //labelStyle: TextStyle(color: Colors.grey),
-                              enabledBorder: OutlineInputBorder(
-                                borderSide: BorderSide(
-                                    color: const Color.fromARGB(
-                                        255, 22, 103, 170)),
-                              ),
-                              focusedBorder: OutlineInputBorder(
-                                borderSide: BorderSide(
-                                    color: Color.fromARGB(255, 22, 103, 170)),
-                              ),
-                            ),
-                          ),
-                        ),
-                      ],
-                    ),
-                  ),
-                  Padding(
-                    padding: const EdgeInsets.only(left: 50.0, top: 30),
-                    child: Align(
-                      alignment: Alignment.topLeft,
-                      child: Padding(
-                        padding: const EdgeInsets.only(left: 8.0),
-                        child: Text(
-                          "Select a Application",
-                          style: TextStyle(
-                              fontWeight: FontWeight.bold,
-                              fontSize: 16,
-                              color: Colors.black87),
-                        ),
-                      ),
-                    ),
-                  ),
-                  Padding(
-                    padding:
-                        const EdgeInsets.only(left: 60.0, top: 10, right: 100),
-                    child: buildDropdownButton(),
-                  ),
-                  SizedBox(
-                    height: height * 0.04,
-                  ),
-                  Container(
-                    height: height * 0.1,
-                    width: width * 0.2,
-                    child: Padding(
-                      padding: const EdgeInsets.all(12.0),
-                      child: ElevatedButton(
-                        style: ElevatedButton.styleFrom(
-                          padding: const EdgeInsets.symmetric(
-                              horizontal: 20, vertical: 20),
-                          shape: const RoundedRectangleBorder(
-                              borderRadius:
-                                  BorderRadius.all(Radius.circular(5))),
-                          backgroundColor: Color.fromARGB(255, 22, 103, 170),
-                        ),
-                        onPressed: () async {
-                          create();
-                          // bool dialogResult = await showMyDialog(
-                          //     "Confirm Email", "Close the window once done");
-                          // if (dialogResult) {
-                          //   // Dialog box was closed using the close button
-                          //   setState(() {
-                          //     showDialogBox = true; // Set the showDialogBox to true
-                          //   });
-                          // } else {
-                          //   // Dialog box was closed without using the close button
-                          //   // Navigator.push(
-                          //   //     context,
-                          //   //     MaterialPageRoute(
-                          //   //         builder: (context) => createEntity()));
-                          // }
-                        },
-                        child: const Center(
-                            child: Text(
-                          "Submit",
-                          style: TextStyle(
-                              color: Colors.white,
-                              fontSize: 18,
-                              fontWeight: FontWeight.bold),
-                        )),
-                      ),
-                    ),
-                  ),
-                  // Container(
-                  //   height: height * 0.1,
-                  //   width: width * 0.5,
-                  //   child: Padding(
-                  //     padding: const EdgeInsets.all(14.0),
-                  //     child: ElevatedButton(
-                  //       style: ElevatedButton.styleFrom(
-                  //         padding: const EdgeInsets.symmetric(
-                  //             horizontal: 20, vertical: 20),
-                  //         backgroundColor: Colors.white, // Background color
-                  //         foregroundColor:
-                  //             Color.fromARGB(255, 22, 103, 170), // Text color
-                  //         side: BorderSide(
-                  //           color: Color.fromARGB(
-                  //               255, 22, 103, 170), // Outer border color
-                  //           width: 2.0,
-                  //         ),
-                  //       ),
-                  //       onPressed: () {
-                  //         // Navigator.push(
-                  //         //   context,
-                  //         //   MaterialPageRoute(
-                  //         //     builder: (context) => login(),
-                  //         //   ),
-                  //         // );
-                  //       },
-                  //       child: const Center(
-                  //           child: Text(
-                  //         "Cancel",
-                  //         style: TextStyle(
-                  //             color: Color.fromARGB(255, 22, 103, 170),
-                  //             fontSize: 18,
-                  //             fontWeight: FontWeight.bold),
-                  //       )),
-                  //     ),
-                  //   ),
-                  // ),
-                ],
-              )),
-              if (_isLoading) // Show CircularProgressIndicator as overlay when loading
-                Positioned.fill(
-                  child: Container(
-                    color: Color.fromARGB(137, 79, 79, 79)
-                        .withOpacity(0.5), // Semi-transparent background
-                    child: Center(
-                      child: CircularProgressIndicator(),
+        child: Center(
+          child: Stack(children: [
+            Container(
+                child: Column(
+              children: [
+                SizedBox(
+                  height: height * 0.01,
+                ),
+                Align(
+                  alignment: Alignment.topCenter,
+                  child: Padding(
+                    padding: const EdgeInsets.all(32.0),
+                    child: Text(
+                      "Create an account for new users",
+                      style:
+                          TextStyle(fontWeight: FontWeight.bold, fontSize: 30),
                     ),
                   ),
                 ),
-            ]),
-          ),
+                SizedBox(
+                  height: height * 0.01,
+                ),
+                // Padding(
+                //   padding: const EdgeInsets.only(left: 16.0),
+                //   child: Align(
+                //       alignment: Alignment.topLeft,
+                //       child: Text(
+                //           "Next, complete the following fields. Unless marked as optional, all fields are required. ")),
+                // ),
+                Padding(
+                  padding: const EdgeInsets.only(left: 50.0),
+                  child: Column(
+                    children: [
+                      Padding(
+                        padding: const EdgeInsets.only(left: 8),
+                        child: Align(
+                          alignment: Alignment.topLeft,
+                          child: Text("Name*",
+                              style: TextStyle(
+                                  fontSize: 16,
+                                  color: Colors.black87,
+                                  fontWeight: FontWeight.bold)),
+                        ),
+                      ),
+                      Padding(
+                        padding: const EdgeInsets.only(
+                            left: 8.0, top: 8, right: 100),
+                        child: TextFormField(
+                          controller: nameController,
+                          decoration: InputDecoration(
+                            fillColor: Color.fromARGB(255, 182, 224, 242),
+                            //labelText: 'Email Address',
+                            //labelStyle: TextStyle(color: Colors.grey),
+                            enabledBorder: OutlineInputBorder(
+                              borderSide: BorderSide(
+                                  color: Color.fromARGB(255, 22, 103, 170)),
+                            ),
+                            focusedBorder: OutlineInputBorder(
+                              borderSide: BorderSide(
+                                  color: Color.fromARGB(255, 22, 103, 170)),
+                            ),
+                          ),
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+                Padding(
+                  padding: const EdgeInsets.only(left: 50.0, top: 10),
+                  child: Column(
+                    children: [
+                      Padding(
+                        padding: const EdgeInsets.only(left: 8),
+                        child: Align(
+                          alignment: Alignment.topLeft,
+                          child: Text("Email*",
+                              style: TextStyle(
+                                  fontSize: 16,
+                                  color: Colors.black87,
+                                  fontWeight: FontWeight.bold)),
+                        ),
+                      ),
+                      Padding(
+                        padding: const EdgeInsets.only(
+                            left: 8.0, top: 8, right: 100),
+                        child: TextFormField(
+                          controller: emailController,
+                          decoration: InputDecoration(
+                            fillColor: Color.fromARGB(255, 182, 224, 242),
+                            //labelText: 'Email Address',
+                            //labelStyle: TextStyle(color: Colors.grey),
+                            enabledBorder: OutlineInputBorder(
+                              borderSide: BorderSide(
+                                  color: Color.fromARGB(255, 22, 103, 170)),
+                            ),
+                            focusedBorder: OutlineInputBorder(
+                              borderSide: BorderSide(
+                                  color: Color.fromARGB(255, 22, 103, 170)),
+                            ),
+                          ),
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+                Padding(
+                  padding: const EdgeInsets.only(left: 50.0, top: 16),
+                  child: Column(
+                    children: [
+                      Padding(
+                        padding: const EdgeInsets.only(left: 8),
+                        child: Align(
+                          alignment: Alignment.topLeft,
+                          child: Text("Phone*",
+                              style: TextStyle(
+                                  fontSize: 16,
+                                  color: Colors.black87,
+                                  fontWeight: FontWeight.bold)),
+                        ),
+                      ),
+                      Padding(
+                        padding: const EdgeInsets.only(
+                            left: 8.0, top: 8, right: 100),
+                        child: TextFormField(
+                          controller: phoneController,
+                          decoration: InputDecoration(
+                            fillColor: Color.fromARGB(255, 182, 224, 242),
+                            //labelText: 'Email Address',
+                            //labelStyle: TextStyle(color: Colors.grey),
+                            enabledBorder: OutlineInputBorder(
+                              borderSide: BorderSide(
+                                  color: Color.fromARGB(255, 22, 103, 170)),
+                            ),
+                            focusedBorder: OutlineInputBorder(
+                              borderSide: BorderSide(
+                                  color: Color.fromARGB(255, 22, 103, 170)),
+                            ),
+                          ),
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+                Padding(
+                  padding: const EdgeInsets.only(left: 50.0, top: 16),
+                  child: Column(
+                    children: [
+                      Padding(
+                        padding: const EdgeInsets.only(left: 8),
+                        child: Align(
+                          alignment: Alignment.topLeft,
+                          child: Text("UserId*",
+                              style: TextStyle(
+                                  fontSize: 16,
+                                  color: Colors.black87,
+                                  fontWeight: FontWeight.bold)),
+                        ),
+                      ),
+                      Padding(
+                        padding: const EdgeInsets.only(
+                            left: 8.0, top: 8, right: 100),
+                        child: TextFormField(
+                          controller: userIdController,
+                          decoration: InputDecoration(
+                            fillColor: Color.fromARGB(255, 182, 224, 242),
+                            //labelText: 'Email Address',
+                            //labelStyle: TextStyle(color: Colors.grey),
+                            enabledBorder: OutlineInputBorder(
+                              borderSide: BorderSide(
+                                  color:
+                                      const Color.fromARGB(255, 22, 103, 170)),
+                            ),
+                            focusedBorder: OutlineInputBorder(
+                              borderSide: BorderSide(
+                                  color: Color.fromARGB(255, 22, 103, 170)),
+                            ),
+                          ),
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+                Padding(
+                  padding: const EdgeInsets.only(left: 50.0, top: 30),
+                  child: Align(
+                    alignment: Alignment.topLeft,
+                    child: Padding(
+                      padding: const EdgeInsets.only(left: 8.0),
+                      child: Text(
+                        "Select a Application",
+                        style: TextStyle(
+                            fontWeight: FontWeight.bold,
+                            fontSize: 16,
+                            color: Colors.black87),
+                      ),
+                    ),
+                  ),
+                ),
+                Padding(
+                  padding:
+                      const EdgeInsets.only(left: 60.0, top: 10, right: 100),
+                  child: buildDropdownButton(),
+                ),
+                SizedBox(
+                  height: height * 0.04,
+                ),
+                Container(
+                  height: height * 0.1,
+                  width: width * 0.2,
+                  child: Padding(
+                    padding: const EdgeInsets.all(12.0),
+                    child: ElevatedButton(
+                      style: ElevatedButton.styleFrom(
+                        padding: const EdgeInsets.symmetric(
+                            horizontal: 20, vertical: 20),
+                        shape: const RoundedRectangleBorder(
+                            borderRadius: BorderRadius.all(Radius.circular(5))),
+                        backgroundColor: Color.fromARGB(255, 22, 103, 170),
+                      ),
+                      onPressed: () async {
+                        create();
+                        // bool dialogResult = await showMyDialog(
+                        //     "Confirm Email", "Close the window once done");
+                        // if (dialogResult) {
+                        //   // Dialog box was closed using the close button
+                        //   setState(() {
+                        //     showDialogBox = true; // Set the showDialogBox to true
+                        //   });
+                        // } else {
+                        //   // Dialog box was closed without using the close button
+                        //   // Navigator.push(
+                        //   //     context,
+                        //   //     MaterialPageRoute(
+                        //   //         builder: (context) => createEntity()));
+                        // }
+                      },
+                      child: const Center(
+                          child: Text(
+                        "Submit",
+                        style: TextStyle(
+                            color: Colors.white,
+                            fontSize: 18,
+                            fontWeight: FontWeight.bold),
+                      )),
+                    ),
+                  ),
+                ),
+                // Container(
+                //   height: height * 0.1,
+                //   width: width * 0.5,
+                //   child: Padding(
+                //     padding: const EdgeInsets.all(14.0),
+                //     child: ElevatedButton(
+                //       style: ElevatedButton.styleFrom(
+                //         padding: const EdgeInsets.symmetric(
+                //             horizontal: 20, vertical: 20),
+                //         backgroundColor: Colors.white, // Background color
+                //         foregroundColor:
+                //             Color.fromARGB(255, 22, 103, 170), // Text color
+                //         side: BorderSide(
+                //           color: Color.fromARGB(
+                //               255, 22, 103, 170), // Outer border color
+                //           width: 2.0,
+                //         ),
+                //       ),
+                //       onPressed: () {
+                //         // Navigator.push(
+                //         //   context,
+                //         //   MaterialPageRoute(
+                //         //     builder: (context) => login(),
+                //         //   ),
+                //         // );
+                //       },
+                //       child: const Center(
+                //           child: Text(
+                //         "Cancel",
+                //         style: TextStyle(
+                //             color: Color.fromARGB(255, 22, 103, 170),
+                //             fontSize: 18,
+                //             fontWeight: FontWeight.bold),
+                //       )),
+                //     ),
+                //   ),
+                // ),
+              ],
+            )),
+            if (_isLoading) // Show CircularProgressIndicator as overlay when loading
+              Positioned.fill(
+                child: Container(
+                  color: Color.fromARGB(137, 79, 79, 79)
+                      .withOpacity(0.5), // Semi-transparent background
+                  child: Center(
+                    child: CircularProgressIndicator(),
+                  ),
+                ),
+              ),
+          ]),
         ),
       ),
     );

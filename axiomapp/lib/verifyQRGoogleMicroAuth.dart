@@ -323,50 +323,33 @@ class _verifyQRGoogleMicroAuthState extends State<verifyQRGoogleMicroAuth> {
         double width = MediaQuery.of(context).size.width;
         double height = MediaQuery.of(context).size.height;
         return AlertDialog(
-          // title: Text(_title),
-          content: Column(children: [
-            SizedBox(
-              height: height * 0.1,
-            ),
-            Image.asset("images/complete_valid.png"),
-            Align(
-              alignment: Alignment.topCenter,
-              child: Padding(
-                padding: const EdgeInsets.only(left: 16.0, top: 16),
-                child: Text(
-                  "OTP Verified Successfully ",
-                  style: TextStyle(
-                      fontWeight: FontWeight.bold,
-                      color: Color.fromARGB(255, 56, 55, 55),
-                      fontSize: 30),
+          //title: Text(_title),
+          content: Column(
+            mainAxisSize: MainAxisSize.min, // Minimize the size of the dialog
+            children: [
+              Image.asset("images/complete_valid.png"),
+              Text(
+                "OTP Verified Successfully",
+                style: TextStyle(
+                  fontWeight: FontWeight.bold,
+                  color: Color.fromARGB(255, 56, 55, 55),
+                  fontSize: 30,
                 ),
               ),
-            ),
-            SizedBox(
-              height: height * 0.03,
-            ),
-            Align(
-              alignment: Alignment.topCenter,
-              child: Padding(
-                padding: const EdgeInsets.only(left: 16.0, top: 16),
-                child: Text(
-                  "User authentication is done",
-                  style: TextStyle(
-                      fontWeight: FontWeight.bold,
-                      color: Color.fromARGB(255, 56, 55, 55),
-                      fontSize: 30),
+              SizedBox(height: height * 0.02),
+              Text(
+                "User authentication is done",
+                style: TextStyle(
+                  fontWeight: FontWeight.bold,
+                  color: Color.fromARGB(255, 56, 55, 55),
+                  fontSize: 30,
                 ),
               ),
-            ),
-            SizedBox(
-              height: height * 0.05,
-            ),
-            Padding(
-              padding: const EdgeInsets.all(8.0),
-              child: Center(
+              SizedBox(height: height * 0.03),
+              Center(
                 child: SizedBox(
-                  width: width * 0.12,
-                  height: height * 0.1,
+                  width: 100,
+                  height: 40,
                   child: ElevatedButton(
                     onPressed: () {
                       Navigator.push(
@@ -379,38 +362,25 @@ class _verifyQRGoogleMicroAuthState extends State<verifyQRGoogleMicroAuth> {
                     style: ElevatedButton.styleFrom(
                       backgroundColor: Colors.white,
                       shape: RoundedRectangleBorder(
-                        borderRadius:
-                            BorderRadius.circular(2), // Button border radius
+                        borderRadius: BorderRadius.circular(2),
                         side: BorderSide(
-                            color: Color.fromARGB(
-                                255, 22, 103, 170)), // Border color
+                          color: Color.fromARGB(255, 22, 103, 170),
+                        ),
                       ),
                     ),
-                    child:
-                        // Icon(Icons.cancel),
-                        // SizedBox(
-                        //   width: 7,
-                        // ),
-                        Text(
+                    child: Text(
                       'Close',
                       style: TextStyle(
-                          fontSize: 18,
-                          color: const Color.fromARGB(255, 5, 49, 86),
-                          fontWeight: FontWeight.bold),
+                        fontSize: 18,
+                        color: const Color.fromARGB(255, 5, 49, 86),
+                        fontWeight: FontWeight.bold,
+                      ),
                     ),
                   ),
                 ),
-              ),
-            )
-          ]),
-          // actions: <Widget>[
-          //   TextButton(
-          //     child: const Text('close'),
-          //     onPressed: () {
-          //       Navigator.of(context).pop();
-          //     },
-          //   ),
-          // ],
+              )
+            ],
+          ),
         );
       },
     );
